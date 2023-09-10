@@ -1,0 +1,9 @@
+Carlos Deleon
+
+How I made the program?
+
+I asked Bing AI/Chat to code the print loop for csv files
+then i manually coded i broke each line into split array list, holding a array of strings for each line of the csv
+then i used that to make the paramaters and then printed out took long time but it work
+csv file is soooo bad XD but we make it work
+wasted more time on Ai then actually just coding it myself
