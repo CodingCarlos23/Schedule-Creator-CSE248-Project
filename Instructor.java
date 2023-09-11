@@ -28,10 +28,31 @@ public class Instructor implements Comparable<Instructor>{
 	private String intVal;
 	private String fallWrkload;
 
-	public Instructor(String idNo, String homeCamp, String busPhone, String name, String address, String cityStateZip,
-			String homePhone, String collegeDate, String courses, String rank, String onl, String campus,
-			String secondCrse, String thirdCrse, String numEves, String am7to8Days, String pm3to4Days, String sat,
-			String sun, String lateAftDays, String evesDays, String intVal, String fallWrkload) {
+	public Instructor(
+			String idNo, 
+			String homeCamp, 
+			String busPhone, 
+			String name, 
+			String address, 
+			String cityStateZip,
+			String homePhone, 
+			String collegeDate, 
+			String courses, 
+			String rank, 
+			String onl, 
+			String campus,
+			String secondCrse, 
+			String thirdCrse, 
+			String numEves, 
+			String am7to8Days, 
+			String pm3to4Days, 
+			String sat,
+			String sun, 
+			String lateAftDays, 
+			String evesDays, 
+			String intVal, 
+			String fallWrkload) 
+	{
 		super();
 		this.idNo = idNo;
 		this.homeCamp = homeCamp;
@@ -256,6 +277,10 @@ public class Instructor implements Comparable<Instructor>{
 	@Override
 	public int compareTo(Instructor other) {
 	    return Integer.compare(Integer.parseInt(this.idNo), Integer.parseInt(other.idNo));
+	}
+
+	public String getCourses() {
+		return courses;
 	}
 
 }
