@@ -27,6 +27,18 @@ public class Instructor implements Comparable<Instructor>{
 	private String evesDays;
 	private String intVal;
 	private String fallWrkload;
+	private boolean [][] schedule  = new boolean [6][5];
+	/*
+	 * each row is a time of day so itll be easy (i hope)
+	 * M T W T F
+	 * [][][][][]
+	 * [][][][][]
+	 * [][][][][]
+	 * [][][][][]
+	 * [][][][][]
+	 * [][][][][]
+	 * 
+	 */
 
 	public Instructor(
 			String idNo, 
@@ -69,18 +81,124 @@ public class Instructor implements Comparable<Instructor>{
 		this.secondCrse = secondCrse;
 		this.thirdCrse = thirdCrse;
 		this.numEves = numEves;
+		am7to8Days = String.format("%-20s", am7to8Days);
 		this.am7to8Days = am7to8Days;
+		pm3to4Days = String.format("%-20s", pm3to4Days);
 		this.pm3to4Days = pm3to4Days;
 		this.sat = sat;
 		this.sun = sun;
+		lateAftDays = String.format("%-5s", lateAftDays);
 		this.lateAftDays = lateAftDays;
 		this.evesDays = evesDays;
 		this.intVal = intVal;
 		this.fallWrkload = fallWrkload;
-	}
+		
+		
+		
+		//7to8
+		if (am7to8Days.contains("M") && am7to8Days.contains("*")) {
+			schedule[0][0] = true;
+		}
+		if (am7to8Days.charAt(2) == 'T' && am7to8Days.contains("*")) {
+			schedule[0][1] = true;
+		}
+		if (am7to8Days.contains("W") && am7to8Days.contains("*")) {
+			schedule[0][2] = true;
+		}
+		if (am7to8Days.charAt(4) == 'T' && am7to8Days.contains("*")) {
+			schedule[0][3] = true;
+		}
+		if (am7to8Days.contains("F") && am7to8Days.contains("*")) {
+			schedule[0][4] = true;
+		}
+		
+		//8to12 will have to fix later to account for *
+		if (am7to8Days.charAt(am7to8Days.length() - 8) == 'M' && am7to8Days.contains("*")) {
+			schedule[1][0] = true;
+		}
+		if (am7to8Days.charAt(am7to8Days.length() - 7) == 'T' && am7to8Days.contains("*")) {
+			schedule[1][1] = true;
+		}
+		if (am7to8Days.charAt(am7to8Days.length() - 3) == 'W' && am7to8Days.contains("*")) {
+			schedule[1][2] = true;
+		}
+		if (am7to8Days.charAt(am7to8Days.length() - 2) == 'T' && am7to8Days.contains("*")) {
+			schedule[1][3] = true;
+		}
+		if (am7to8Days.charAt(am7to8Days.length() - 1) == 'F' && am7to8Days.contains("*")) {
+			schedule[1][4] = true;
+		}
+		
+		//12to3
+		if (pm3to4Days.contains("M") && !pm3to4Days.contains("*")) {
+		    schedule[2][0] = true;
+		}
+		if (pm3to4Days.charAt(1) == 'T' && !pm3to4Days.contains("*")) {
+		    schedule[2][1] = true;
+		}
+		if (pm3to4Days.contains("W") && !pm3to4Days.contains("*")) {
+		    schedule[2][2] = true;
+		}
+		if (pm3to4Days.charAt(3) == 'T' && !pm3to4Days.contains("*")) {
+		    schedule[2][3] = true;
+		}
+		if (pm3to4Days.contains("F") && !pm3to4Days.contains("*")) {
+		    schedule[2][4] = true;
+		}
+		
+		//3to4
+		if (pm3to4Days.contains("M") && pm3to4Days.contains("*")) {
+		    schedule[3][0] = true;
+		}
+		if (pm3to4Days.charAt(2) == 'T' && pm3to4Days.contains("*")) {
+		    schedule[3][1] = true;
+		}
+		if (pm3to4Days.contains("W") && pm3to4Days.contains("*")) {
+		    schedule[3][2] = true;
+		}
+		if (pm3to4Days.charAt(4) == 'T' && pm3to4Days.contains("*")) {
+		    schedule[3][3] = true;
+		}
+		if (pm3to4Days.contains("F") && pm3to4Days.contains("*")) {
+		    schedule[3][4] = true;
+		}
 
-	public Instructor() {
-		// TODO Auto-generated constructor stub
+		
+		//4to6
+		if (lateAftDays.contains("M")) {
+			schedule[4][0] = true;
+		}
+		if (lateAftDays.charAt(2) == 'T') {
+			schedule[4][1] = true;
+		}
+		if (lateAftDays.contains("W")) {
+			schedule[4][2] = true;
+		}
+		if (lateAftDays.charAt(4) == 'T') {
+			schedule[4][3] = true;
+		}
+		if (lateAftDays.contains("F")) {
+			schedule[4][4] = true;
+		}
+		
+		//4to6
+		if (evesDays.contains("M")) {
+		    schedule[5][0] = true;
+		}
+		if (evesDays.charAt(1) == 'T') {
+		    schedule[5][1] = true;
+		}
+		if (evesDays.contains("W")) {
+		    schedule[5][2] = true;
+		}
+		if (evesDays.charAt(3) == 'T') {
+		    schedule[5][3] = true;
+		}
+		if (evesDays.contains("F")) {
+		    schedule[5][4] = true;
+		}
+
+		
 	}
 
 	public String getIdNo() {
@@ -262,6 +380,23 @@ public class Instructor implements Comparable<Instructor>{
 	public void setFallWrkload(String fallWrkload) {
 		this.fallWrkload = fallWrkload;
 	}
+
+	public boolean[][] getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(boolean[][] schedule) {
+		this.schedule = schedule;
+	}
+	
+	 public void printSchedule() {
+	        for (int i = 0; i < schedule.length; i++) {
+	            for (int j = 0; j < schedule[i].length; j++) {
+	                System.out.print(schedule[i][j] + " ");
+	            }
+	            System.out.println();
+	        }
+	    }
 
 	@Override
 	public String toString() {

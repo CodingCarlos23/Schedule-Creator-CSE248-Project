@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.TreeSet;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,7 +41,11 @@ public class Demo extends Application {
 		String cvsSplitBy = "\t";
 		boolean found = false;
 		int count = 0;
-		TreeSet<Instructor> instructorsList = new TreeSet<>(); // tree set is good for large data and finds things fast
+		
+		//TreeSet<Instructor> instructorsList = new TreeSet<>(); // tree set is good for large data and finds things fast
+		
+	    InstructorList instructorList = InstructorList.getInstance();
+		
 		// ArrayList<Instructor> instructorsList = new ArrayList<Instructor>();
 
 		try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -115,9 +121,10 @@ public class Demo extends Application {
 								sun, //sun
 								list.get(0)[12], //late aftdays
 								list.get(0)[13],//evesdays
+								
 								list.get(0)[14], //int
 								list.get(0)[15]); //fallwork
-						instructorsList.add(instructor);
+						instructorList.addInstructor(instructor);
 						list = new ArrayList<String[]>();
 						//
 						count = 0;
@@ -155,15 +162,17 @@ public class Demo extends Application {
 		}
 
 		System.out.println();
-		for (Instructor instructor : instructorsList) {
-			System.out.println(instructor);
-		}
+		
+        instructorList.printInstructors();
 
-		int size = instructorsList.size();
-		System.out.println("The size of the TreeSet is: " + size);
+
+        int size = instructorList.getSize();
+        System.out.println("The size of the TreeSet is: " + size);
 
 		// code for GUI
 		
+		// Old GUI code for the following
+		/*
 		//Title
 		Label title = new Label("Display teacher scheduler");
 		final double MAX_FONT_SIZE = 30.0; // define max font size you need
@@ -489,9 +498,11 @@ public class Demo extends Application {
         VBox vbox = new VBox(title, searchBox, displayInstructorBoxTop, week);
         root.setContent(vbox);
 		//root.getChildren().add(vbox);
-
+		*/
+		//old gui code stop
 		
-		Scene scene = new Scene(root, 1000, 800);
+		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

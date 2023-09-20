@@ -13,3 +13,7 @@ part 2
 i asked chatgpt to make some of the buttons / java fx layout worked pretty well i used treeset but might have to change that later depending on rank/seniorty
 for now it works i also struggled with making the if else buttons for the gui in the map it is a lot espically for how teidous the data is but i got it done
 there are still lots of bugs i need to account for but ill fix the if and else later. important thing is the days do work and change color for avability so it is a good start
+
+part 2 again
+yeah treeset might switch to treemap later but depend. fixed a lot of if and else but still some bugs
+also using scene builder much better imo very good and nice
