@@ -164,6 +164,40 @@ public class Demo extends Application {
 		System.out.println();
 		
         instructorList.printInstructors();
+        
+        //////This is for course testing remove later
+        
+        csvFile = "Data/CourseInformation.csv"; // Replace with your CSV file path
+        //String line;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            // Read the header line to skip it
+            br.readLine();
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+
+                // Assuming the CSV columns are in order, create a Course object
+                Course course = new Course(
+                        Integer.parseInt(data[2]),    // Course Number
+                        data[3],                      // Course Title
+                        Integer.parseInt(data[4]),    // CRN
+                        data[6],                      // Part of Term
+                        data[7],                      // Campus
+                        data[9],                      // Instruction Method
+                        data[19],                     // Days Offered
+                        data[20],                     // Begin Time
+                        data[21]                      // End Time
+                );
+
+                // You can do whatever you want with the course object here
+                System.out.println(course);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        //////course parsing done
 
 
         int size = instructorList.getSize();
