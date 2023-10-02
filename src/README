@@ -1,0 +1,19 @@
+Carlos Deleon
+
+How I made the program?
+
+part 1
+I asked Bing AI/Chat to code the print loop for csv files
+then i manually coded i broke each line into split array list, holding a array of strings for each line of the csv
+then i used that to make the paramaters and then printed out took long time but it work
+csv file is soooo bad XD but we make it work
+wasted more time on Ai then actually just coding it myself
+
+part 2
+i asked chatgpt to make some of the buttons / java fx layout worked pretty well i used treeset but might have to change that later depending on rank/seniorty
+for now it works i also struggled with making the if else buttons for the gui in the map it is a lot espically for how teidous the data is but i got it done
+there are still lots of bugs i need to account for but ill fix the if and else later. important thing is the days do work and change color for avability so it is a good start
+
+part 2 again
+yeah treeset might switch to treemap later but depend. fixed a lot of if and else but still some bugs
+also using scene builder much better imo very good and nice
