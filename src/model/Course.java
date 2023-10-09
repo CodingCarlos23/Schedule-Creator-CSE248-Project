@@ -1,6 +1,6 @@
 package model;
 
-public class Course {
+public class Course implements Comparable<Course>{
 	private int courseNumber;
 	private String courseTitle;
 	private int CRN;
@@ -10,6 +10,7 @@ public class Course {
 	private String daysOffered;
 	private String beginTime;
 	private String endTime;
+	private String assignedInstructor;
 
 	// Constructor
 	public Course(int courseNumber, String courseTitle, int CRN, String partOfTerm, String campus,
@@ -96,14 +97,27 @@ public class Course {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
+	
+	public String getAssignedInstructor() {
+		return assignedInstructor;
+	}
+
+	public void setAssignedInstructor(String assignedInstructor) {
+		this.assignedInstructor = assignedInstructor;
+	}
 
 	@Override
 	public String toString() {
 		return "Course [courseNumber=" + courseNumber + ", courseTitle=" + courseTitle + ", CRN=" + CRN
 				+ ", partOfTerm=" + partOfTerm + ", campus=" + campus + ", instructionMethod=" + instructionMethod
-				+ ", daysOffered=" + daysOffered + ", beginTime=" + beginTime + ", endTime=" + endTime + "]";
+				+ ", daysOffered=" + daysOffered + ", beginTime=" + beginTime + ", endTime=" + endTime
+				+ ", assignedInstructor=" + assignedInstructor + "]";
 	}
 
-	
+	@Override
+	public int compareTo(Course other) {
+	    return Integer.compare(this.CRN, other.CRN);
+	}
+
 	
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 //        String csvFile = "C:\\Users\\carlo\\Desktop\\Instructors.csv";
 
@@ -28,6 +30,8 @@ public class Instructor implements Comparable<Instructor>{
 	private String intVal;
 	private String fallWrkload;
 	private boolean [][] schedule  = new boolean [6][5];
+    private ArrayList<String> classesAssigned = new ArrayList<String>(5);
+
 	/*
 	 * each row is a time of day so itll be easy (i hope)
 	 * M T W T F
@@ -63,7 +67,8 @@ public class Instructor implements Comparable<Instructor>{
 			String lateAftDays, 
 			String evesDays, 
 			String intVal, 
-			String fallWrkload) 
+			String fallWrkload
+			) 
 	{
 		super();
 		this.idNo = idNo;
@@ -389,7 +394,15 @@ public class Instructor implements Comparable<Instructor>{
 		this.schedule = schedule;
 	}
 	
-	 public void printSchedule() {
+	 public ArrayList<String> getClassesAssigned() {
+		return classesAssigned;
+	}
+
+	public void setClassesAssigned(ArrayList<String> classesAssigned) {
+		this.classesAssigned = classesAssigned;
+	}
+
+	public void printSchedule() {
 	        for (int i = 0; i < schedule.length; i++) {
 	            for (int j = 0; j < schedule[i].length; j++) {
 	                System.out.print(schedule[i][j] + " ");
@@ -406,7 +419,8 @@ public class Instructor implements Comparable<Instructor>{
 				+ ", campus=" + campus + ", secondCrse=" + secondCrse + ", thirdCrse=" + thirdCrse + ", numEves="
 				+ numEves + ", am7to8Days=" + am7to8Days + ", pm3to4Days=" + pm3to4Days + ", sat=" + sat + ", sun="
 				+ sun + ", lateAftDays=" + lateAftDays + ", evesDays=" + evesDays + ", intVal=" + intVal
-				+ ", fallWrkload=" + fallWrkload + "]";
+				+ ", fallWrkload=" + fallWrkload + ", schedule=" + Arrays.toString(schedule) + ", classesAssigned="
+				+ classesAssigned + "]";
 	}
 	
 	@Override

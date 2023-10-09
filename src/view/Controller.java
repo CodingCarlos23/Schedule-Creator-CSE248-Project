@@ -1,12 +1,18 @@
 package view;
 
+import java.io.IOException;
 import java.util.Iterator;
+import javafx.scene.Node;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Instructor;
 import model.InstructorList;
 
@@ -108,6 +114,21 @@ public class Controller {
 	//
 	@FXML
 	private Button Sat; 
+	
+	public void schedulerView(ActionEvent event) throws IOException{
+	    // Load the FXML file for the new scene
+	    Parent newSceneParent = FXMLLoader.load(getClass().getResource("/view/Scheduler.fxml"));
+
+	    // Create a new scene
+	    Scene newScene = new Scene(newSceneParent);
+
+	    // Get the current stage
+	    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+	    // Set the new scene to the current stage
+	    currentStage.setScene(newScene);
+	    currentStage.show();
+	}
 	
 	public void Search(ActionEvent e) {
 	    Sun.setStyle("");
