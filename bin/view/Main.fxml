@@ -16,6 +16,11 @@
                <children>
                   <TextField fx:id="idFeild" text="idNo" />
                   <Button fx:id="Search" mnemonicParsing="false" onAction="#Search" text="Search" />
+                  <Button fx:id="schedulerView" mnemonicParsing="false" onAction="#schedulerView" text="Scheduler View">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="272.0" prefWidth="745.0" spacing="10.0">

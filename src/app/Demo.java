@@ -219,7 +219,7 @@ public class Demo extends Application {
 
         //* Code for setting instructors with class Assigned
         
-        //Shouldve used linked list
+        
 
         //*Class assigned end
 
