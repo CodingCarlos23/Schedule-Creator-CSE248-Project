@@ -3,6 +3,7 @@ package app;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -193,10 +194,16 @@ public class Demo extends Application {
                 if (data.length > 20) {
                     endTime = data[20];
                 }
-
+                
+                DecimalFormat df = new DecimalFormat("000");
+                int number = Integer.parseInt(data[2]);
+                String str = data[1];
+                String formattedNumber = df.format(number);
+                //System.out.println(formattedNumber);
+                
                 // Assuming the CSV columns are in order, create a Course object
                 Course course = new Course(
-                        Integer.parseInt(data[2]),    // Course Number
+                		str + " " + formattedNumber,    // Course Number
                         data[3],                      // Course Title
                         Integer.parseInt(data[4]),    // CRN
                         data[6],                      // Part of Term
@@ -241,11 +248,13 @@ public class Demo extends Application {
 		//delete these
         System.out.println(instructorList.getInstructors().first());
         System.out.println(courseList.getCourses().getFirst());
-        instructorList.getInstructors().first().getClassesAssigned().add(courseList.getCourses().getFirst().getCourseTitle());
+        instructorList.getInstructors().first().getClassesAssigned().add(courseList.getCourses().getFirst().getCourseNumber());
         courseList.getCourses().getFirst().setAssignedInstructor(instructorList.getInstructors().first().getName());
         System.out.println();
         System.out.println(instructorList.getInstructors().first());
         System.out.println(courseList.getCourses().getFirst());
+        
+        //System.out.println(courseList.getCourses().get(0));
 	}
 
 }

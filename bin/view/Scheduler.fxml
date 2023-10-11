@@ -24,6 +24,7 @@
                <children>
                   <GridPane fx:id="SchduleGrid" alignment="CENTER">
                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -42,26 +43,33 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Sunday" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Monday" GridPane.columnIndex="1" />
-                        <Label text="Tuesday " GridPane.columnIndex="2" />
-                        <Label text="Wednesday" GridPane.columnIndex="3" />
-                        <Label text="Thursday" GridPane.columnIndex="4" />
-                        <Label text="Friday" GridPane.columnIndex="5" />
-                        <Label text="Saturday" GridPane.columnIndex="6" />
-                        <Button fx:id="s1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="S1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                        <Button fx:id="s2" mnemonicParsing="false" prefHeight="47.0" prefWidth="115.0" text="S2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
-                        <Button fx:id="s3" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="S3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
-                        <Button fx:id="s4" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="S4" GridPane.rowIndex="4" />
-                        <Button fx:id="s5" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="S5" GridPane.rowIndex="5" />
-                        <Button fx:id="s6" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="S6" GridPane.rowIndex="6" />
-                        <Button fx:id="m1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button fx:id="m2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button fx:id="m3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Button fx:id="m4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M4" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Button fx:id="m5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M5" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Button fx:id="m6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M6" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Button fx:id="t1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="T1" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Sunday" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Monday" GridPane.columnIndex="2" />
+                        <Label text="Tuesday " GridPane.columnIndex="3" />
+                        <Label text="Wednesday" GridPane.columnIndex="4" />
+                        <Label text="Thursday" GridPane.columnIndex="5" />
+                        <Label text="Friday" GridPane.columnIndex="6" />
+                        <Label text="Saturday" GridPane.columnIndex="7" />
+                        <Button fx:id="s1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="S1" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="s2" mnemonicParsing="false" prefHeight="47.0" prefWidth="115.0" text="S2" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="s3" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="S3" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+                        <Button fx:id="s4" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="S4" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button fx:id="s5" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="S5" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button fx:id="s6" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="S6" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Button fx:id="m1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M1" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button fx:id="m2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button fx:id="m3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M3" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Button fx:id="m4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M4" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Button fx:id="m5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M5" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Button fx:id="m6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="M6" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <Button fx:id="t1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="T1" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label text="Time" />
+                        <Label text="7-8" GridPane.rowIndex="1" />
+                        <Label text="8-12" GridPane.rowIndex="2" />
+                        <Label text="12-3" GridPane.rowIndex="3" />
+                        <Label text="3-4" GridPane.rowIndex="4" />
+                        <Label text="4-6" GridPane.rowIndex="5" />
+                        <Label text="6-10" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                </children>
