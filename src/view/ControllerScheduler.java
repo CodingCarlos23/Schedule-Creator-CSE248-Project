@@ -15,10 +15,10 @@ public class ControllerScheduler {
     InstructorList instructorList = InstructorList.getInstance();
 
     @FXML
-    private Button s1;
+    private Button u1;
     
     public void initialize() {
-        s1.setText("Your Text");
+        u1.setText("Your Text");
     }
     
 }

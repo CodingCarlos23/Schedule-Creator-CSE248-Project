@@ -52,12 +52,13 @@ public class Demo extends Application {
 	    InstructorList instructorList = InstructorList.getInstance();
 		CourseList courseList = CourseList.getInstance();
 		// ArrayList<Instructor> instructorsList = new ArrayList<Instructor>();
+	    int consecutiveNullLines = 0; // Counter for consecutive null lines
 
 		try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
 			ArrayList<String[]> list = null;
-		    int consecutiveNullLines = 0; // Counter for consecutive null lines
+		   // int consecutiveNullLines = 0; // Counter for consecutive null lines
 
-			while ((line = br.readLine()) != null || consecutiveNullLines != 2) {
+			while ((line = br.readLine()) != null && consecutiveNullLines < 2) {
 				if (found) {
 
 					//
@@ -77,11 +78,39 @@ public class Demo extends Application {
 
 					list.add(values);
 					count++;
-					if (count == 4) {
+					
+					String[] x = {""};
+					if (list.size() > 3 && list.get(3).length != 0) {/// ITS WORKSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+					    x = list.get(3);
+					    System.out.println(x + "CHECK IT OUT");
+					    // rest of your code
+					} else {
+					    System.out.println("Index out of bounds");
+					}
+
+					System.out.println(x);
+					
+					String[] targetArray = {"—"};
+					boolean contains = list.stream().anyMatch(array -> Arrays.equals(array, targetArray));
+					System.out.println(contains);
+
+					System.out.println("^");
+					System.out.println(list.size());
+					
+					String targetString = "—"; // replace with the string you're looking for
+					boolean isit = Arrays.asList(x).contains(targetString);
+					System.out.println(isit);
+					System.out.println();
+
+					if ((count == 4) || (contains && count == 3)) { // FIX THIS NOW || !x.contains("—") && count == 3
+						//the courses are not getting the part under it 
+
 						String[] empt = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
 
 						for (String[] array : list) {
-							// System.out.println(Arrays.toString(array));
+							System.out.println("HERE" + Arrays.toString(array));
+							System.out.println(array.equals(("—")));
+							System.out.println(Arrays.asList(array).contains("—"));
 						}
 						//
 						// cant do sun because out of bounds will fix later
@@ -96,14 +125,20 @@ public class Demo extends Application {
 							sat = "";
 				        }
 						
-						String sun;
+						String sun = "";
 						try {
 							sun = list.get(1)[10];
 				        } catch (ArrayIndexOutOfBoundsException e) {
 							sun = "";
 				        }
 						//
-
+						String course = "";
+						if (list.size() > 3 && list.get(3).length > 2) {
+							course = list.get(2)[3] + " " + list.get(3)[2];
+						} else {
+							course = list.get(2)[3];
+							System.out.println(list.get(3).length);
+						}
 						Instructor instructor = new Instructor(
 								list.get(0)[0], 
 								list.get(1)[0], 
@@ -113,7 +148,7 @@ public class Demo extends Application {
 								list.get(2)[1] + "," + list.get(2)[2], 
 								list.get(0)[3], 
 								list.get(1)[2],
-								list.get(2)[3] + " " + list.get(3)[2], 
+								course, // nine
 								list.get(0)[4], 
 								list.get(0)[5], 
 								list.get(0)[6],
@@ -134,7 +169,7 @@ public class Demo extends Application {
 						//
 						count = 0;
 						found = false;
-						System.out.println("1");
+						System.out.println(instructor);
 						// break;//////////////////////////////////////change delte this
 
 					}
@@ -145,6 +180,12 @@ public class Demo extends Application {
 					}
 					String[] values = line.split(cvsSplitBy);
 					for (String value : values) {
+						if(value == null) {
+							consecutiveNullLines++;
+						}
+						if(values == null) {
+							consecutiveNullLines++;
+						}
 						if (value.contains("—")) {
 							found = true;
 							break;
@@ -161,11 +202,11 @@ public class Demo extends Application {
 //            	instructorsList.add(instructor);
 //            	list = new ArrayList<String[]>();
 //            }
+			System.out.println(consecutiveNullLines + "Null count ");
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		System.out.println();
 		
         instructorList.printInstructors();
@@ -215,7 +256,7 @@ public class Demo extends Application {
                 );
 
                 // You can do whatever you want with the course object here
-                System.out.println(course);
+                //System.out.println(course);
                 courseList.addCourse(course);
             }
         } catch (IOException e) {
@@ -231,7 +272,7 @@ public class Demo extends Application {
         //*Class assigned end
 
         System.out.println();
-        courseList.printCourses();
+       // courseList.printCourses();
         
         
         int size = instructorList.getSize();
@@ -255,6 +296,9 @@ public class Demo extends Application {
         System.out.println(courseList.getCourses().getFirst());
         
         //System.out.println(courseList.getCourses().get(0));
+        
+        instructorList.printInstructors();
+        
 	}
 
 }

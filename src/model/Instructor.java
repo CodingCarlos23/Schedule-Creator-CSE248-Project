@@ -53,7 +53,7 @@ public class Instructor implements Comparable<Instructor>{
 			String cityStateZip,
 			String homePhone, 
 			String collegeDate, 
-			String courses, 
+			String courses,// nine
 			String rank, 
 			String onl, 
 			String campus,
