@@ -91,8 +91,8 @@ public class Demo extends Application {
 					System.out.println(x);
 					
 					String[] targetArray = {"—"};
-					boolean contains = list.stream().anyMatch(array -> Arrays.equals(array, targetArray));
-					System.out.println(contains);
+					//boolean contains = list.stream().anyMatch(array -> Arrays.equals(array, targetArray));
+					//System.out.println(contains);
 
 					System.out.println("^");
 					System.out.println(list.size());
@@ -100,9 +100,12 @@ public class Demo extends Application {
 					String targetString = "—"; // replace with the string you're looking for
 					boolean isit = Arrays.asList(x).contains(targetString);
 					System.out.println(isit);
-					System.out.println();
 
-					if ((count == 4) || (contains && count == 3)) { // FIX THIS NOW || !x.contains("—") && count == 3
+					System.out.println("V");
+					boolean contains = list.stream().anyMatch(array -> Arrays.asList(array).contains("—"));
+					System.out.println(contains);
+					System.out.println();
+					if ((count == 4) || (contains)) { // FIX THIS NOW || !x.contains("—") && count == 3
 						//the courses are not getting the part under it 
 
 						String[] empt = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
@@ -302,3 +305,11 @@ public class Demo extends Application {
 	}
 
 }
+String[] cells = line.split(",");
+for (String cell : cells) {
+    currentList.add(cell);
+    System.out.println(cell);
+}
+
+// Check for the marker "�"
+if (line.contains("—")) {
