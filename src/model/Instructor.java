@@ -22,6 +22,8 @@ public class Instructor implements Comparable<Instructor>{
 	private String thirdCrse;
 	private String numEves;
 	private String am7to8Days;
+	private String am8to12pm;
+	private String pm12to3;
 	private String pm3to4Days;
 	private String sat;
 	private String sun;
@@ -61,11 +63,13 @@ public class Instructor implements Comparable<Instructor>{
 			String thirdCrse, 
 			String numEves, 
 			String am7to8Days, 
+			String am8to12pm,
+			String pm12to3,
 			String pm3to4Days, 
 			String sat,
 			String sun, 
-			String lateAftDays, 
-			String evesDays, 
+			String lateAftDays, //4to6
+			String evesDays, //6to10
 			String intVal, 
 			String fallWrkload
 			) 
@@ -86,122 +90,18 @@ public class Instructor implements Comparable<Instructor>{
 		this.secondCrse = secondCrse;
 		this.thirdCrse = thirdCrse;
 		this.numEves = numEves;
-		am7to8Days = String.format("%-20s", am7to8Days);
 		this.am7to8Days = am7to8Days;
-		pm3to4Days = String.format("%-20s", pm3to4Days);
+		this.am8to12pm = am8to12pm;
 		this.pm3to4Days = pm3to4Days;
+		this.pm12to3 = pm12to3;
 		this.sat = sat;
 		this.sun = sun;
-		lateAftDays = String.format("%-5s", lateAftDays);
 		this.lateAftDays = lateAftDays;
 		this.evesDays = evesDays;
 		this.intVal = intVal;
 		this.fallWrkload = fallWrkload;
 		
 		
-		
-		//7to8
-		if (am7to8Days.contains("M") && am7to8Days.contains("*")) {
-			schedule[0][0] = true;
-		}
-		if (am7to8Days.charAt(2) == 'T' && am7to8Days.contains("*")) {
-			schedule[0][1] = true;
-		}
-		if (am7to8Days.contains("W") && am7to8Days.contains("*")) {
-			schedule[0][2] = true;
-		}
-		if (am7to8Days.charAt(4) == 'T' && am7to8Days.contains("*")) {
-			schedule[0][3] = true;
-		}
-		if (am7to8Days.contains("F") && am7to8Days.contains("*")) {
-			schedule[0][4] = true;
-		}
-		
-		//8to12 will have to fix later to account for *
-		if (am7to8Days.charAt(am7to8Days.length() - 8) == 'M' && am7to8Days.contains("*")) {
-			schedule[1][0] = true;
-		}
-		if (am7to8Days.charAt(am7to8Days.length() - 7) == 'T' && am7to8Days.contains("*")) {
-			schedule[1][1] = true;
-		}
-		if (am7to8Days.charAt(am7to8Days.length() - 3) == 'W' && am7to8Days.contains("*")) {
-			schedule[1][2] = true;
-		}
-		if (am7to8Days.charAt(am7to8Days.length() - 2) == 'T' && am7to8Days.contains("*")) {
-			schedule[1][3] = true;
-		}
-		if (am7to8Days.charAt(am7to8Days.length() - 1) == 'F' && am7to8Days.contains("*")) {
-			schedule[1][4] = true;
-		}
-		
-		//12to3
-		if (pm3to4Days.contains("M") && !pm3to4Days.contains("*")) {
-		    schedule[2][0] = true;
-		}
-		if (pm3to4Days.charAt(1) == 'T' && !pm3to4Days.contains("*")) {
-		    schedule[2][1] = true;
-		}
-		if (pm3to4Days.contains("W") && !pm3to4Days.contains("*")) {
-		    schedule[2][2] = true;
-		}
-		if (pm3to4Days.charAt(3) == 'T' && !pm3to4Days.contains("*")) {
-		    schedule[2][3] = true;
-		}
-		if (pm3to4Days.contains("F") && !pm3to4Days.contains("*")) {
-		    schedule[2][4] = true;
-		}
-		
-		//3to4
-		if (pm3to4Days.contains("M") && pm3to4Days.contains("*")) {
-		    schedule[3][0] = true;
-		}
-		if (pm3to4Days.charAt(2) == 'T' && pm3to4Days.contains("*")) {
-		    schedule[3][1] = true;
-		}
-		if (pm3to4Days.contains("W") && pm3to4Days.contains("*")) {
-		    schedule[3][2] = true;
-		}
-		if (pm3to4Days.charAt(4) == 'T' && pm3to4Days.contains("*")) {
-		    schedule[3][3] = true;
-		}
-		if (pm3to4Days.contains("F") && pm3to4Days.contains("*")) {
-		    schedule[3][4] = true;
-		}
-
-		
-		//4to6
-		if (lateAftDays.contains("M")) {
-			schedule[4][0] = true;
-		}
-		if (lateAftDays.charAt(2) == 'T') {
-			schedule[4][1] = true;
-		}
-		if (lateAftDays.contains("W")) {
-			schedule[4][2] = true;
-		}
-		if (lateAftDays.charAt(4) == 'T') {
-			schedule[4][3] = true;
-		}
-		if (lateAftDays.contains("F")) {
-			schedule[4][4] = true;
-		}
-		
-		//4to6
-		if (evesDays.contains("M")) {
-		    schedule[5][0] = true;
-		}
-		if (evesDays.charAt(1) == 'T') {
-		    schedule[5][1] = true;
-		}
-		if (evesDays.contains("W")) {
-		    schedule[5][2] = true;
-		}
-		if (evesDays.charAt(3) == 'T') {
-		    schedule[5][3] = true;
-		}
-		if (evesDays.contains("F")) {
-		    schedule[5][4] = true;
-		}
 
 		
 	}
@@ -417,10 +317,10 @@ public class Instructor implements Comparable<Instructor>{
 				+ ", address=" + address + ", cityStateZip=" + cityStateZip + ", homePhone=" + homePhone
 				+ ", collegeDate=" + collegeDate + ", courses=" + courses + ", rank=" + rank + ", onl=" + onl
 				+ ", campus=" + campus + ", secondCrse=" + secondCrse + ", thirdCrse=" + thirdCrse + ", numEves="
-				+ numEves + ", am7to8Days=" + am7to8Days + ", pm3to4Days=" + pm3to4Days + ", sat=" + sat + ", sun="
-				+ sun + ", lateAftDays=" + lateAftDays + ", evesDays=" + evesDays + ", intVal=" + intVal
-				+ ", fallWrkload=" + fallWrkload + ", schedule=" + Arrays.toString(schedule) + ", classesAssigned="
-				+ classesAssigned + "]";
+				+ numEves + ", am7to8Days=" + am7to8Days + ", am8to12pm=" + am8to12pm + ", pm12to3=" + pm12to3
+				+ ", pm3to4Days=" + pm3to4Days + ", sat=" + sat + ", sun=" + sun + ", lateAftDays=" + lateAftDays
+				+ ", evesDays=" + evesDays + ", intVal=" + intVal + ", fallWrkload=" + fallWrkload + ", schedule="
+				+ Arrays.toString(schedule) + ", classesAssigned=" + classesAssigned + "]";
 	}
 	
 	@Override
