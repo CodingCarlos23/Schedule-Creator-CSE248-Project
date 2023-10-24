@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import model.Instructor;
@@ -11,6 +12,7 @@ public class TestingThing {
         String csvFile = "Data/InstructorsV2.csv"; // Replace with the path to your CSV file
         List<List<String>> result = new ArrayList<>();
         List<String> currentList = new ArrayList<>();
+        LinkedList<String> senorityList = new LinkedList<String>();
         int consecutiveNullLines = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -36,6 +38,8 @@ public class TestingThing {
                         if (!currentList.isEmpty()) {
                         	//System.out.println(currentList.size());
                             result.add(currentList);
+                            String number = currentList.get(0).replaceAll("[^0-9]", ""); // Removes all non-digit characters
+                            senorityList.add(number);
                             //add INSTRUCTOR HERE
                             currentList = new ArrayList<>();
                         }
@@ -48,6 +52,8 @@ public class TestingThing {
             // Add the last currentList to the result
             if (!currentList.isEmpty()) {
                 result.add(currentList);
+                String number = currentList.get(0).replaceAll("[^0-9]", ""); // Removes all non-digit characters
+              //  senorityList.add(number);
             }
 
             // Find the maximum row length
@@ -162,7 +168,169 @@ public class TestingThing {
         		result.get(i).get(13),
         		"",
         		result.get(i).get(15));	
+        
+        //Schedule instructor setter
+    	boolean [][] schedule  = new boolean [6][5];
+    	String days = instructor.getAm7to8Days();
+//#
+        for (int i1 = 0; i1 < days.length(); i1++) {
+            char dayChar = days.charAt(i1);
+            switch (dayChar) {
+                case 'M':
+                    schedule[0][0] = true;
+                    break;
+                case 'T':
+                    if (i1 == 2) {
+                        schedule[0][1] = true; // Tuesday
+                    } else if (i1 == 4) {
+                        schedule[0][3] = true; // Thursday
+                    }
+                    break;
+                case 'W':
+                    schedule[0][2] = true;
+                    break;
+                case 'F':
+                    schedule[0][4] = true;
+                    break;
+                default:
+                    break; // Handle other characters as needed
+            }
+        } 	
+    	days = instructor.getAm8to12pm();
+        for (int i1 = 0; i1 < days.length(); i1++) {
+            char dayChar = days.charAt(i1);
+            switch (dayChar) {
+                case 'M':
+                    schedule[1][0] = true;
+                    break;
+                case 'T':
+                    if (i1 == 1 || i1 == 2) {
+                        schedule[1][1] = true; // Tuesday
+                    } else if (i1 == 3 || i1 == 4) {
+                        schedule[1][3] = true; // Thursday
+                    }
+                    break;
+                case 'W':
+                    schedule[1][2] = true;
+                    break;
+                case 'F':
+                    schedule[1][4] = true;
+                    break;
+                default:
+                    break; // Handle other characters as needed
+            }
+        }
+        
+    	days = instructor.getPm12to3();// CHANGE THE TUES AND THURS TO GET MULITPLE INDEXS
+    	System.out.println(days);
+        for (int i1 = 0; i1 < days.length(); i1++) {
+            char dayChar = days.charAt(i1);
+            switch (dayChar) {
+                case 'M':
+                    schedule[2][0] = true;
+                    break;
+                case 'T':
+                    if (i1 == 2 || i1 == 1) {
+                        schedule[2][1] = true; // Tuesday
+                    } else if (i1 == 4 || i1 == 3) {
+                        schedule[2][3] = true; // Thursday
+                    }
+                    break;
+                case 'W':
+                    schedule[2][2] = true;
+                    break;
+                case 'F':
+                    schedule[2][4] = true;
+                    break;
+                default:
+                    break; // Handle other characters as needed
+            }
+        }
+        
+    	days = instructor.getPm3to4Days();
+    	System.out.println(days);
+        for (int i1 = 0; i1 < days.length(); i1++) {
+            char dayChar = days.charAt(i1);
+            switch (dayChar) {
+                case 'M':
+                    schedule[3][0] = true;
+                    break;
+                case 'T':
+                    if (i1 == 2) {
+                        schedule[3][1] = true; // Tuesday
+                    } else if (i1 == 4) {
+                        schedule[3][3] = true; // Thursday
+                    }
+                    break;
+                case 'W':
+                    schedule[3][2] = true;
+                    break;
+                case 'F':
+                    schedule[3][4] = true;
+                    break;
+                default:
+                    break; // Handle other characters as needed
+            }
+        }
+        
+    	days = instructor.getLateAftDays();
+    	System.out.println(days);
+        for (int i1 = 0; i1 < days.length(); i1++) {
+            char dayChar = days.charAt(i1);
+            switch (dayChar) {
+                case 'M':
+                    schedule[4][0] = true;
+                    break;
+                case 'T':
+                    if (i1 == 1) {
+                        schedule[4][1] = true; // Tuesday
+                    } else if (i1 == 3) {
+                        schedule[4][3] = true; // Thursday
+                    }
+                    break;
+                case 'W':
+                    schedule[4][2] = true;
+                    break;
+                case 'F':
+                    schedule[4][4] = true;
+                    break;
+                default:
+                    break; // Handle other characters as needed
+            }
+        }
+        
+    	days = instructor.getEvesDays();
+    	System.out.println(days);
+        for (int i1 = 0; i1 < days.length(); i1++) {
+            char dayChar = days.charAt(i1);
+            switch (dayChar) {
+                case 'M':
+                    schedule[5][0] = true;
+                    break;
+                case 'T':
+                    if (i1 == 1) {
+                        schedule[5][1] = true; // Tuesday
+                    } else if (i1 == 3) {
+                        schedule[5][3] = true; // Thursday
+                    }
+                    break;
+                case 'W':
+                    schedule[5][2] = true;
+                    break;
+                case 'F':
+                    schedule[5][4] = true;
+                    break;
+                default:
+                    break; // Handle other characters as needed
+            }
+        }
+//#
+    	instructor.setSchedule(schedule);
+    	//
+        
         System.out.println(instructor);
+        instructor.printSchedule();
+        System.out.println(senorityList);
         //
 
         System.out.println("Done");

@@ -238,6 +238,22 @@ public class Instructor implements Comparable<Instructor>{
 		this.pm3to4Days = pm3to4Days;
 	}
 
+	public String getAm8to12pm() {
+		return am8to12pm;
+	}
+
+	public void setAm8to12pm(String am8to12pm) {
+		this.am8to12pm = am8to12pm;
+	}
+
+	public String getPm12to3() {
+		return pm12to3;
+	}
+
+	public void setPm12to3(String pm12to3) {
+		this.pm12to3 = pm12to3;
+	}
+
 	public String getSat() {
 		return sat;
 	}
