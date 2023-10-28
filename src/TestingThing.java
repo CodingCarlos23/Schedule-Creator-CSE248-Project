@@ -229,35 +229,22 @@ public class TestingThing {
         courseList = Tools.importCourseCSV(csvFile);
        
         courseList.printCourses();
-        
-        csvFile = "Data/Instructor_Frequency_v3.csv";
-        
         //
-        List<List<String>> courseFreq = new LinkedList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            String line;
+        
+        //course freq
+//        csvFile = "Data/Instructor_Frequency_v3.csv";
+//        
+//        List<List<String>> courseFreq = new LinkedList<>();
+//        courseFreq = Tools.importCourseFreq(csvFile);
+//        
+//        for (List<String> list : courseFreq) {
+//            System.out.println(list);
+//        }
+//        
+//      System.out.println(courseFreq.get(26).get(10));
 
-            while ((line = br.readLine()) != null) {
-                String[] cells = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
-                // Create a new LinkedList for each line
-                List<String> lineList = new LinkedList<>();
-                for (String cell : cells) {
-                    lineList.add(cell);
-                }
-                // Add the lineList to the main courseFreq list
-                courseFreq.add(lineList);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Print each LinkedList in courseFreq on a new line
-        for (List<String> list : courseFreq) {
-            System.out.println(list);
-        }
-        //
-        System.out.println(courseFreq.get(1).get(10));
+        // courseFreq
+       
     }
     
 }

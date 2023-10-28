@@ -9,13 +9,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Course;
+import model.CourseFreqList;
 import model.CourseList;
 
 public class Tools {
 	
     private static List<String> currentList = new ArrayList<>();
     private static LinkedList<String> senorityList = new LinkedList<String>();
-    
+    private static List<List<String>> courseFreq = new LinkedList<>();
+
     public static List<List<String>> importInstructorsCSV(String csvFile) {
     	List<List<String>> result = new ArrayList<>();
     	int consecutiveNullLines = 0;
@@ -136,7 +138,7 @@ public class Tools {
                  
                  // Assuming the CSV columns are in order, create a Course object
                  Course course = new Course(
-                 		str + " " + formattedNumber,    // Course Number
+                 		str + "" + formattedNumber,    // Course Number
                          data[3],                      // Course Title
                          Integer.parseInt(data[4]),    // CRN
                          data[6],                      // Part of Term
@@ -158,4 +160,38 @@ public class Tools {
 		return courseList;
     	
     }
+    
+    public static CourseFreqList importCourseFreq(String csvFile) {
+       
+    	CourseFreqList courseFreq = CourseFreqList.getInstance();
+
+//    	 List<List<String>> courseFreq = new LinkedList<>();
+         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+             String line;
+
+             while ((line = br.readLine()) != null) {
+                 String[] cells = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+                 // Create a new LinkedList for each line
+                 List<String> lineList = new LinkedList<>();
+                 for (String cell : cells) {
+                     lineList.add(cell);
+                 }
+                 // Add the lineList to the main courseFreq list
+                 courseFreq.addCourse(lineList);
+//                 courseFreq.add(lineList);
+             }
+
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+
+         // Print each LinkedList in courseFreq on a new line
+
+         //
+//         System.out.println(courseFreq.get(26).get(10));
+    	
+    	return courseFreq;
+    	
+    }
+    
 }

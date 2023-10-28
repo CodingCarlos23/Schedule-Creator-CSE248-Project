@@ -1,11 +1,12 @@
 package app;
-
+//CARLOS DELEON
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -25,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Course;
+import model.CourseFreqList;
 import model.CourseList;
 import model.Instructor;
 import model.InstructorList;
@@ -51,7 +53,9 @@ public class Demo extends Application {
 		/// MAKE THIS SAVE TO THE DISK AND IF THE DISK HAS DATA SERIALIZABLE THEN YOU LOAD IT
 		
 		
+		//SAVE AFTER EVERY CHANGE/ person you assign
 		
+		//MAKE QUICK 2nd view that just detects
 		
 		
 		
@@ -262,7 +266,20 @@ public class Demo extends Application {
         csvFile = "Data/CourseInformation.csv"; // Replace with your CSV file path
         courseList = Tools.importCourseCSV(csvFile);
         courseList.printCourses();
+        System.out.println("Course ^");
         //Course End *
+        
+        //Course Freq
+        csvFile = "Data/Instructor_Frequency_v3.csv";
+        
+        CourseFreqList courseFreq = CourseFreqList.getInstance();
+        
+        courseFreq = Tools.importCourseFreq(csvFile);
+        
+        courseFreq.printCourses();
+        
+      
+        //course freq end
         
 		// code for GUI
 		
