@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.TreeSet;
 
-public class InstructorList {//maybe make it singleton
+public class InstructorList implements Serializable {
 	 private static InstructorList instance = null;
 	    private TreeSet<Instructor> instructors;
 
@@ -28,7 +29,7 @@ public class InstructorList {//maybe make it singleton
 	            System.out.println();
 	        }
 	    }
-	    
+
 	    public TreeSet<Instructor> getInstructors() {
 			return instructors;
 		}
@@ -44,4 +45,16 @@ public class InstructorList {//maybe make it singleton
 		public int getSize() {
 	        return instructors.size();
 	    }
+		
+		public Instructor getInstructorById(String id) {
+	    	id = id.trim();
+
+		    for (Instructor instructor : instructors) {
+		    	String idNo = instructor.getIdNo().trim();
+		        if (idNo.equals(id)) {
+		            return instructor;
+		        }
+		    }
+		    return null; // return null if no instructor with the given ID is found
+		}
 }

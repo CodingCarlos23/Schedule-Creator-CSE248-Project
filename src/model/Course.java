@@ -1,10 +1,14 @@
 package model;
 
-public class Course implements Comparable<Course>{
+import java.io.Serializable;
+
+//public class Course implements Comparable<Course>{
+public class Course implements Serializable {
+
 	private String courseNumber;
 	private String courseTitle;
-	private int CRN;
-	private String partOfTerm;//make array later
+	private String CRN;
+	private String partOfTerm;// make array later
 	private String campus;
 	private String instructionMethod;
 	private String daysOffered;
@@ -17,7 +21,7 @@ public class Course implements Comparable<Course>{
 	private int endTimeMin;
 
 	// Constructor
-	public Course(String courseNumber, String courseTitle, int CRN, String partOfTerm, String campus,
+	public Course(String courseNumber, String courseTitle, String CRN, String partOfTerm, String campus,
 			String instructionMethod, String daysOffered, String beginTime, String endTime) {
 		this.courseNumber = courseNumber;
 		this.courseTitle = courseTitle;
@@ -32,48 +36,48 @@ public class Course implements Comparable<Course>{
 		String time = beginTime; // This is your time string
 		Integer hour = -1; // -1 means it is online if the others are null
 		Integer mins = -1;
-		
+
 		if (!time.equals("")) {
-		    String[] parts = time.split(":"); // This will give you ["6", "00PM"]
+			String[] parts = time.split(":"); // This will give you ["6", "00PM"]
 
-		    String hourString = parts[0]; // This will give you "6"
-		    hour = Integer.parseInt(hourString); // This will convert "6" to 6
+			String hourString = parts[0]; // This will give you "6"
+			hour = Integer.parseInt(hourString); // This will convert "6" to 6
 
-		    String minsAndPeriod = parts[1]; // This will give you "30PM"
-		    String minsString = minsAndPeriod.substring(0, 2); // This will give you "30"
-		    mins = Integer.parseInt(minsString); // This will convert "30" to 30
-		    
-		    String period = parts[1].substring(2); // This will give you "PM"
-		    if (period.equals("PM") && hour != 12) {
-		        hour = hour + 12;
-		    } else if (period.equals("AM") && hour == 12) {
-		    	
-		    }
+			String minsAndPeriod = parts[1]; // This will give you "30PM"
+			String minsString = minsAndPeriod.substring(0, 2); // This will give you "30"
+			mins = Integer.parseInt(minsString); // This will convert "30" to 30
+
+			String period = parts[1].substring(2); // This will give you "PM"
+			if (period.equals("PM") && hour != 12) {
+				hour = hour + 12;
+			} else if (period.equals("AM") && hour == 12) {
+
+			}
 		}
 		startTimeHour = hour;
 		startTimeMin = mins;
-		
+
 		//
 		time = endTime; // This is your time string
 		hour = -1; // -1 means it is online if the others are null
 		mins = -1;
-		
+
 		if (!time.equals("")) {
-		    String[] parts = time.split(":"); // This will give you ["6", "00PM"]
+			String[] parts = time.split(":"); // This will give you ["6", "00PM"]
 
-		    String hourString = parts[0]; // This will give you "6"
-		    hour = Integer.parseInt(hourString); // This will convert "6" to 6
+			String hourString = parts[0]; // This will give you "6"
+			hour = Integer.parseInt(hourString); // This will convert "6" to 6
 
-		    String minsAndPeriod = parts[1]; // This will give you "30PM"
-		    String minsString = minsAndPeriod.substring(0, 2); // This will give you "30"
-		    mins = Integer.parseInt(minsString); // This will convert "30" to 30
-		    
-		    String period = parts[1].substring(2); // This will give you "PM"
-		    if (period.equals("PM") && hour != 12) {
-		        hour = hour + 12;
-		    } else if (period.equals("AM") && hour == 12) {
-		    	
-		    }
+			String minsAndPeriod = parts[1]; // This will give you "30PM"
+			String minsString = minsAndPeriod.substring(0, 2); // This will give you "30"
+			mins = Integer.parseInt(minsString); // This will convert "30" to 30
+
+			String period = parts[1].substring(2); // This will give you "PM"
+			if (period.equals("PM") && hour != 12) {
+				hour = hour + 12;
+			} else if (period.equals("AM") && hour == 12) {
+
+			}
 		}
 		endTimeHour = hour;
 		endTimeMin = mins;
@@ -96,11 +100,11 @@ public class Course implements Comparable<Course>{
 		this.courseTitle = courseTitle;
 	}
 
-	public int getCRN() {
+	public String getCRN() {
 		return CRN;
 	}
 
-	public void setCRN(int cRN) {
+	public void setCRN(String cRN) {
 		CRN = cRN;
 	}
 
@@ -151,7 +155,7 @@ public class Course implements Comparable<Course>{
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	
+
 	public String getAssignedInstructor() {
 		return assignedInstructor;
 	}
@@ -169,10 +173,9 @@ public class Course implements Comparable<Course>{
 				+ startTimeMin + ", endTimeHour=" + endTimeHour + ", endTimeMin=" + endTimeMin + "]";
 	}
 
-	@Override
-	public int compareTo(Course other) {
-	    return Integer.compare(this.CRN, other.CRN);
-	}
+//	@Override
+//	public int compareTo(Course other) {
+//	    return Integer.compare(this.CRN, other.CRN);
+//	}
 
-	
 }

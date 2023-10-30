@@ -140,7 +140,7 @@ public class Tools {
                  Course course = new Course(
                  		str + "" + formattedNumber,    // Course Number
                          data[3],                      // Course Title
-                         Integer.parseInt(data[4]),    // CRN
+                         data[4],    // CRN
                          data[6],                      // Part of Term
                          data[7],                      // Campus
                          data[9],                      // Instruction Method

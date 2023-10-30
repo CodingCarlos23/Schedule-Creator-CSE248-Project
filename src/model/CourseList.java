@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class CourseList {
+public class CourseList implements Serializable {
 	private static CourseList instance = null;
 	private LinkedList<Course> courses;
 	private CourseList() {

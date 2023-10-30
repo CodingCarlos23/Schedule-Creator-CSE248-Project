@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CourseFreqList {
+public class CourseFreqList implements Serializable {
     private static CourseFreqList instance = null;
     private LinkedList<List<String>> courseFreq;
 

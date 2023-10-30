@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 //        String csvFile = "C:\\Users\\carlo\\Desktop\\Instructors.csv";
 
-public class Instructor implements Comparable<Instructor>{
+public class Instructor implements Comparable<Instructor>,Serializable {
 	private String idNo;
 	private String homeCamp;
 	private String busPhone;
@@ -32,7 +33,7 @@ public class Instructor implements Comparable<Instructor>{
 	private String intVal;
 	private String fallWrkload;
 	private boolean [][] schedule  = new boolean [6][5];
-    private ArrayList<String> classesAssigned = new ArrayList<String>(5);
+    private ArrayList<Course> classesAssigned = new ArrayList<Course>(5);
 
 	/*
 	 * each row is a time of day so itll be easy (i hope)
@@ -310,11 +311,11 @@ public class Instructor implements Comparable<Instructor>{
 		this.schedule = schedule;
 	}
 	
-	 public ArrayList<String> getClassesAssigned() {
+	 public ArrayList<Course> getClassesAssigned() {
 		return classesAssigned;
 	}
 
-	public void setClassesAssigned(ArrayList<String> classesAssigned) {
+	public void setClassesAssigned(ArrayList<Course> classesAssigned) {
 		this.classesAssigned = classesAssigned;
 	}
 

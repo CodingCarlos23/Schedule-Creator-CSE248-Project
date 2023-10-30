@@ -19,6 +19,7 @@ import model.CourseFreqList;
 import model.CourseList;
 import model.Instructor;
 import model.InstructorList;
+import util.Backup;
 import util.Tools;
 
 public class Controller {
@@ -26,6 +27,9 @@ public class Controller {
 	InstructorList instructorList = InstructorList.getInstance();
 	CourseList courseList = CourseList.getInstance();
 	CourseFreqList courseFreq = CourseFreqList.getInstance();
+    LinkedList<String> senorityList = Tools.getSeniorityList();
+    
+	Instructor instructor;
 
 	@FXML
 	private Label RecommendedCourse;
@@ -33,9 +37,20 @@ public class Controller {
 	@FXML
 	private Label DisplayInfoLabel;
 
+	@FXML
+	private Label CourseFreq;
+	
 	public void initialize() {
 		DisplayInfoLabel.setMaxWidth(800);
 		DisplayInfoLabel.setWrapText(true);
+		
+		
+//	    for(int i = 0; i < senorityList.size(); i++) {
+//
+//	    	System.out.println("It worked" + instructor);
+//	    	
+//	    }
+		
 	}
 
 	@FXML
@@ -44,6 +59,12 @@ public class Controller {
 	@FXML
 	private Button Search;
 
+	@FXML
+	private TextField crnFeild;
+	
+	@FXML
+	private Button crnAssign;
+	
 	//
 	@FXML
 	private Button Sun;
@@ -140,6 +161,8 @@ public class Controller {
 	}
 
 	public void Search(ActionEvent e) {
+//		System.out.println("THIS" + instructorList);
+//		System.out.println(instructorList.getInstructors().first().getName());
 		Sun.setStyle("");
 		M7to8.setStyle("");
 		T7to8.setStyle("");
@@ -172,12 +195,18 @@ public class Controller {
 		R6to10.setStyle("");
 		F6to10.setStyle("");
 		Sat.setStyle("");
-		
 	    boolean instructorFound = false; // Flag to check if any instructor was found
 
+//	    for(int i = 0; i < senorityList.size(); i++) {
+//	    	System.out.println(senorityList.get(i));
+//	    }
+	    
+	    
 		Iterator<Instructor> it = instructorList.getInstructors().iterator();
 		while (it.hasNext()) {
-			Instructor instructor = it.next();
+			
+			
+			instructor = it.next();
 			if (instructor.getIdNo().equals(idFeild.getText())) {
 				// Found the instructor with the target ID
 	            instructorFound = true; // Set the flag to true
@@ -294,21 +323,84 @@ public class Controller {
 					Sat.setStyle("-fx-background-color: #90EE90");
 				}
 
-				DisplayInfoLabel.setText(instructor.toString());
+				String classesWanted;
+				if(instructor.getThirdCrse().contains("Y")) {
+					classesWanted = "3";
+				} else if (instructor.getSecondCrse().contains("Y")) {
+					classesWanted = "2";
+				} else {
+					classesWanted ="1";
+				}
+				String info = instructor.getName() + " " + instructor.getIdNo() + " Courses currently assigned: " + instructor.getClassesAssigned().size() + " Courses they want: " + classesWanted + " " + instructor.getCampus() + " " + instructor.getAm7to8Days() + " " + instructor.getAm8to12pm() + " " + instructor.getPm12to3() + " " +  instructor.getPm3to4Days() + " " + instructor.getLateAftDays() + " " + instructor.getEvesDays() + " " + instructor.getCourses() + " " + instructor.getClassesAssigned();
+				DisplayInfoLabel.setText(info.toString());
 
+				for(int i = 0; i < courseFreq.getCourses().size(); i++) {
+					if(courseFreq.getCourses().get(i).get(0).contains(instructor.getIdNo())) {
+						CourseFreq.setText("Courses taught before: " + courseFreq.getCourses().get(i).get(10));
+					}
+				}
+
+				LinkedList<String> courseAvailable = new LinkedList<String>();
 				for (int i = 0; i < courseList.getCourses().size(); i++) {
 						
-						
-//						String freq = courseFreq.getCourses().get(i).get(10);
-//						freq = freq.replace("\"", "");
-//						RecommendedCourse.setText("Recommended Classes: " + freq);
-						
-						//ADD COURSE FREQ!!
-						if(instructor.getCourses().contains(courseList.getCourses().get(i).getCourseNumber())) {// and courseList course assinged is Null
-							System.out.println("MATCH FOUND!");
-							System.out.println(courseList.getCourses().get(i));//display the match
+
+					if(courseList.getCourses().get(i).getAssignedInstructor() == null) {
+						if(instructor.getCourses().contains(courseList.getCourses().get(i).getCourseNumber())) {// and courseList course assinged is Null						
 							
-							// GOTTA MAKE ANOTHER IF STATMENT WHERE IT CHECKS THAT THE DAYS ARE GOOD TO GO
+							boolean containsAllDays = true;
+							if(courseList.getCourses().get(i).getDaysOffered().contains("M")) {
+								if(instructor.getSchedule()[0][0] == true || instructor.getSchedule()[1][0] == true || instructor.getSchedule()[2][0] == true || instructor.getSchedule()[3][0] == true || instructor.getSchedule()[4][0] == true || instructor.getSchedule()[5][0] == true) {
+									
+								} else {
+									containsAllDays = false;
+								}
+							}
+							if(courseList.getCourses().get(i).getDaysOffered().contains("T")) {
+								if(instructor.getSchedule()[0][1] == true || instructor.getSchedule()[1][1] == true || instructor.getSchedule()[2][1] == true || instructor.getSchedule()[3][1] == true || instructor.getSchedule()[4][1] == true || instructor.getSchedule()[5][1] == true) {
+									
+								} else {
+									containsAllDays = false;
+								}
+							}
+							if(courseList.getCourses().get(i).getDaysOffered().contains("W")) {
+								if(instructor.getSchedule()[0][2] == true || instructor.getSchedule()[1][2] == true || instructor.getSchedule()[2][2] == true || instructor.getSchedule()[3][2] == true || instructor.getSchedule()[4][2] == true || instructor.getSchedule()[5][2] == true) {
+									
+								} else {
+									containsAllDays = false;
+								}
+							}
+							if(courseList.getCourses().get(i).getDaysOffered().contains("R")) {
+								if(instructor.getSchedule()[0][3] == true || instructor.getSchedule()[1][3] == true || instructor.getSchedule()[2][3] == true || instructor.getSchedule()[3][3] == true || instructor.getSchedule()[4][3] == true || instructor.getSchedule()[5][3] == true) {
+									
+								} else {
+									containsAllDays = false;
+								}
+							}
+							if(courseList.getCourses().get(i).getDaysOffered().contains("F")) {
+								if(instructor.getSchedule()[0][4] == true || instructor.getSchedule()[1][4] == true || instructor.getSchedule()[2][4] == true || instructor.getSchedule()[3][4] == true || instructor.getSchedule()[4][4] == true || instructor.getSchedule()[5][4] == true) {
+									
+								} else {
+									containsAllDays = false;
+								}
+							}
+							if(courseList.getCourses().get(i).getDaysOffered().contains("S")) {
+								if(instructor.getSat().contains("Sat")) {
+									
+								} else {
+									containsAllDays = false;
+								}
+							}
+							if(courseList.getCourses().get(i).getDaysOffered().contains("U")) {
+								if(instructor.getSat().contains("Sun")) {
+									
+								} else {
+									containsAllDays = false;
+								}
+							}
+							if(containsAllDays == true) {
+								courseAvailable.add("| " + courseList.getCourses().get(i).getCourseNumber() + " " + courseList.getCourses().get(i).getDaysOffered() + " " + courseList.getCourses().get(i).getBeginTime()+ " " + courseList.getCourses().get(i).getEndTime() + " " + courseList.getCourses().get(i).getCRN() + " |");
+							}
+						}
 							
 						}
 
@@ -316,15 +408,33 @@ public class Controller {
 						
 
 				}
-				//maybe put break
+				
+				RecommendedCourse.setText(courseAvailable.toString());
+				break;
 			}
 		}
 		
 	    // Check if any instructor was found
 	    if (!instructorFound) {
-	        DisplayInfoLabel.setText("Try again");
+	        DisplayInfoLabel.setText("No instructor found");
 	        RecommendedCourse.setText(""); // Clear the recommended course text
 	    }
-	    
 	}
+	
+	public void crnAssign(ActionEvent e) {
+		for (int i = 0; i < courseList.getCourses().size(); i++) {
+			if(courseList.getCourses().get(i).getCRN().contains(crnFeild.getText())) {
+				courseList.getCourses().get(i).setAssignedInstructor(instructor.getName());
+		        instructor.getClassesAssigned().add(courseList.getCourses().get(i));
+		        
+		        Backup.backupInstructors(instructorList);
+				Backup.backupCourses(courseList);
+				instructorList.setInstance(instructorList);
+				courseList.setInstance(courseList);
+				RecommendedCourse.setText(instructor.getClassesAssigned().toString()); 
+			}
+		}
+		
+	}
+	
 }
