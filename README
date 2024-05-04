@@ -1,24 +1,9 @@
-Carlos Deleon
+Carlos Deleon developing a program, utilizing various methods and tools.
 
-How I made the program?
+Part 1: Initially, I engaged Bing AI/Chat to assist in coding the print loop for CSV files. Subsequently, I manually coded the process of breaking each line into a split array list, which held an array of strings for each line of the CSV. This was done to generate the parameters needed, eventually printing out the results. Although time-consuming, this approach proved effective.
 
-part 1
-I asked Bing AI/Chat to code the print loop for csv files
-then i manually coded i broke each line into split array list, holding a array of strings for each line of the csv
-then i used that to make the paramaters and then printed out took long time but it work
-csv file is soooo bad XD but we make it work
-wasted more time on Ai then actually just coding it myself
+Part 2: I sought help from ChatGPT to design certain buttons and layout elements using JavaFX. I found success with the implementation, utilizing TreeSet, although I contemplated potential changes depending on rank or seniority. Despite encountering challenges, particularly with the if-else buttons within the GUI map, I managed to resolve them. Although there are still existing bugs to address, the functionality related to managing days and changing colors for availability marks a promising beginning.
 
-part 2
-i asked chatgpt to make some of the buttons / java fx layout worked pretty well i used treeset but might have to change that later depending on rank/seniorty
-for now it works i also struggled with making the if else buttons for the gui in the map it is a lot espically for how teidous the data is but i got it done
-there are still lots of bugs i need to account for but ill fix the if and else later. important thing is the days do work and change color for avability so it is a good start
+Part 3: While considering a potential switch from TreeSet to TreeMap, I worked on fixing numerous if-else conditions but acknowledge the presence of lingering bugs. I found Scene Builder to be a significant improvement for designing interfaces, expressing satisfaction with its usability.
 
-part 2 again
-yeah treeset might switch to treemap later but depend. fixed a lot of if and else but still some bugs
-also using scene builder much better imo very good and nice
-
-re working the parsing and remaking my 2nd gui and going to work on serializable
-and manual assign and recommendation
-
-This should be working all correctly now
+Part 4: With ongoing efforts to refine parsing mechanisms and revamp the second GUI, I aim to implement serializable features and manual assignment functionalities. I assure that the program now functions correctly, successfully loading and generating data while accurately displaying each person's schedule.
