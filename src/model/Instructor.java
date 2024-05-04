@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-//        String csvFile = "C:\\Users\\carlo\\Desktop\\Instructors.csv";
 
 public class Instructor implements Comparable<Instructor>,Serializable {
 	private String idNo;
@@ -36,7 +35,6 @@ public class Instructor implements Comparable<Instructor>,Serializable {
     private ArrayList<Course> classesAssigned = new ArrayList<Course>(5);
 
 	/*
-	 * each row is a time of day so itll be easy (i hope)
 	 * M T W T F
 	 * [][][][][]
 	 * [][][][][]

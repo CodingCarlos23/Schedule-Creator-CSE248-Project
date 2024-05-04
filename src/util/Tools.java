@@ -21,8 +21,6 @@ public class Tools {
     public static List<List<String>> importInstructorsCSV(String csvFile) {
     	List<List<String>> result = new ArrayList<>();
     	int consecutiveNullLines = 0;
-      //  List<String> currentList = new ArrayList<>();
-     //   LinkedList<String> senorityList = new LinkedList<String>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             String line;
@@ -36,7 +34,6 @@ public class Tools {
                     }
                 } else {
                 	String[] cells = line.split(",",-1);
-                	// THE ISSUE IS IT IS NOT ADDING THE BLANKS THAT WHY IT IS NOT ALLINGING FIGURE OUT HOW TO ADD BLANKS IF NOT BUFFER THEN APPACHE
                     for (String cell : cells) {
                         currentList.add(cell);
                     }
@@ -49,7 +46,6 @@ public class Tools {
                             result.add(currentList);
                             String number = currentList.get(0).replaceAll("[^0-9]", ""); // Removes all non-digit characters
                             senorityList.add(number);
-                            //add INSTRUCTOR HERE
                             currentList = new ArrayList<>();
                         }
                     }
@@ -185,10 +181,6 @@ public class Tools {
              e.printStackTrace();
          }
 
-         // Print each LinkedList in courseFreq on a new line
-
-         //
-//         System.out.println(courseFreq.get(26).get(10));
     	
     	return courseFreq;
     	

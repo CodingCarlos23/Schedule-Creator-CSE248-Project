@@ -8,7 +8,7 @@ public class Course implements Serializable {
 	private String courseNumber;
 	private String courseTitle;
 	private String CRN;
-	private String partOfTerm;// make array later
+	private String partOfTerm;
 	private String campus;
 	private String instructionMethod;
 	private String daysOffered;
